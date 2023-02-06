@@ -28,18 +28,30 @@
     response.sendRedirect("login.jsp");
   }
 %>
+<jsp:useBean id="product" class="com.uniovi.sdi.Product"/>
+<jsp:setProperty name="product" property="*"/>
 <%
-    if (request.getParameter("name") != null &&
-            request.getParameter("image") != null &&
-            request.getParameter("price") != null) {
-      String name = request.getParameter("name");
-      String image = request.getParameter("image");
-      float price = Float.parseFloat(request.getParameter("price"));
-      Product product = new Product(name, image, price);
-      new ProductsService().setNewProduct(product);
-      request.getRequestDispatcher("index.jsp").forward(request, response);
-    }
+  if (product.getName() != null) {
+    new ProductsService().setNewProduct(product);
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+  }
 %>
+<%-- CAMBIADO POR JSP BEANS ^
+<%
+  if (request.getParameter("name") != null &&
+          request.getParameter("image") != null &&
+          request.getParameter("price") != null) {
+    P á g i n a 45 | 51
+    Sistemas Distribuidos e Internet
+    String name = (String) request.getParameter("name");
+    String image = (String) request.getParameter("image");
+    float price = Float.parseFloat(request.getParameter("price"));
+    Product product = new Product(name, image, price);
+    new ProductsService().setNewProduct(product);
+    request.getRequestDispatcher("index.jsp").forward(request, response);
+  }
+%>
+--%>
 
 <!-- Contenido -->
 <div class="container" id="main-container">

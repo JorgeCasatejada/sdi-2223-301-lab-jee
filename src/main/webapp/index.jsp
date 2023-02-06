@@ -17,13 +17,18 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%-- Cambiado por el Bean
 <%
-    Integer counter = (Integer) application.getAttribute("counter");
-    if (counter == null) {
-        counter = Integer.valueOf(0);
-    }
-    application.setAttribute("counter", counter.intValue() + 1);
+ Integer counter = (Integer) application.getAttribute("counter");
+ if (counter == null) {
+ counter = Integer.valueOf(0);
+ }
+ application.setAttribute("counter", counter.intValue() + 1);
 %>
+--%>
+<jsp:useBean id="counter" class="com.uniovi.sdi.Counter" scope="application"/>
+<jsp:setProperty name="counter" property="increase" value="1"/>
+
 <!-- Barra de Navegación superior -->
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <div class="collapse navbar-collapse" id="my-navbarColor02">
@@ -39,7 +44,9 @@
             </li>
         </ul>
         <div class="nav navbar-right">
-            <%=counter%> Visitas
+            <!-- Cambiado por el bean -->
+            <%-- <%=counter%>Visitas --%>
+            <jsp:getProperty name="counter" property="total"/> Visitas
         </div>
     </div>
 </nav>
