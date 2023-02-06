@@ -69,9 +69,7 @@
                 </a>
             </div>
         </div>
-        <%
-            }
-        %>
+        </c:forEach>
     </div>
 </div>
 </body>
