@@ -6,6 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" import="com.uniovi.sdi.*" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
 "http://www.w3.org/TR/html4/loose.dtd">
@@ -20,6 +21,7 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </head>
 <body>
+<%-- Cambiado por las etiquetas JSTL
 <%
   String user = (String) request.getSession().getAttribute("user");
   System.out.println("Usuario en sesión: " + user);
@@ -28,21 +30,31 @@
     response.sendRedirect("login.jsp");
   }
 %>
+--%>
+<c:if test="${sessionScope.user != 'admin'}">
+  <c:redirect url="/login.jsp"/>
+</c:if>
+
 <jsp:useBean id="product" class="com.uniovi.sdi.Product"/>
 <jsp:setProperty name="product" property="*"/>
+<%-- Cambiado por las etiquetas JSTL
 <%
   if (product.getName() != null) {
     new ProductsService().setNewProduct(product);
     request.getRequestDispatcher("index.jsp").forward(request, response);
   }
 %>
+--%>
+<c:if test="${product.name != null}">
+  <jsp:useBean id="productsService" class="com.uniovi.sdi.ProductsService"/>
+  <jsp:setProperty name="productsService" property="newProduct" value="${product}"/>
+  <c:redirect url="/index.jsp"/>
+</c:if>
 <%-- CAMBIADO POR JSP BEANS ^
 <%
   if (request.getParameter("name") != null &&
           request.getParameter("image") != null &&
           request.getParameter("price") != null) {
-    P á g i n a 45 | 51
-    Sistemas Distribuidos e Internet
     String name = (String) request.getParameter("name");
     String image = (String) request.getParameter("image");
     float price = Float.parseFloat(request.getParameter("price"));
