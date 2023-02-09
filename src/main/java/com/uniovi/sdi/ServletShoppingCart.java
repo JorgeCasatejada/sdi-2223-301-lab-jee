@@ -25,6 +25,10 @@ public class ServletShoppingCart extends HttpServlet {
         if (product != null) {
             addToShoppingCart(cart, product);
         }
+        request.setAttribute("selectedItems", cart);
+        getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
+
+         /* Eliminado al aplicar el patrón MVC
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
@@ -32,7 +36,7 @@ public class ServletShoppingCart extends HttpServlet {
         out.println("<HEAD><TITLE>Tienda SDI: Cesta de la compra</TITLE></HEAD>");
         out.println("<BODY>");
         out.println(shoppingCartToHtml(cart) + "<br>");
-        out.println("<a href=\"index.jsp\">Volver</a></BODY></HTML>");
+        out.println("<a href=\"index.jsp\">Volver</a></BODY></HTML>");*/
     }
 
     private String shoppingCartToHtml(Map<String, Integer> cart) {
