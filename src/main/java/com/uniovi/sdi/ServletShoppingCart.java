@@ -21,10 +21,17 @@ public class ServletShoppingCart extends HttpServlet {
             cart = new HashMap<String, Integer>();
             request.getSession().setAttribute("cart", cart);
         }
+        String option = request.getParameter("option");
+        option = option == null ? "default" : option;
         String product = request.getParameter("product");
-        if (product != null) {
-            addToShoppingCart(cart, product);
+        if (option.equals("add")){
+            if (product != null) {
+                addToShoppingCart(cart, product);
+            }
+        } else if (option.equals("remove")) {
+            removeFromShoppingCart(cart, product);
         }
+
         request.setAttribute("selectedItems", cart);
         getServletContext().getRequestDispatcher("/cart.jsp").forward(request, response);
 
@@ -53,6 +60,15 @@ public class ServletShoppingCart extends HttpServlet {
         else {
             int productCount = (Integer) cart.get(productKey).intValue();
             cart.put(productKey, Integer.valueOf(productCount + 1));
+        }
+    }
+
+    private void removeFromShoppingCart(Map<String, Integer> cart, String productKey) {
+        if (cart.get(productKey) == 1)
+            cart.remove(productKey);
+        else {
+            int productCount = (Integer) cart.get(productKey).intValue();
+            cart.put(productKey, Integer.valueOf(productCount - 1));
         }
     }
 

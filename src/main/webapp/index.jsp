@@ -66,7 +66,7 @@
             <div>
                 <img src="<c:out value="${product.image}"/>" />
                 <div><c:out value="${product.name}"/></div>
-                <a href="AddToShoppingCart?product=<c:out value="${product.name}"/>"
+                <a href="AddToShoppingCart?product=<c:out value="${product.name}"/>&option=add"
                     class="btn btn-default" >
                     <c:out value="${product.price}"/>  €
                 </a>
