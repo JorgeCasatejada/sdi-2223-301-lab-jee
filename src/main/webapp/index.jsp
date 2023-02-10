@@ -43,6 +43,9 @@
             <li class="nav-item ">
                 <a class="nav-link" href="admin.jsp">Administrar productos<span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item ">
+                <a class="nav-link" href="products">Productos<span class="sr-only">(current)</span></a>
+            </li>
         </ul>
         <div class="nav navbar-right">
             <!-- Cambiado por el bean -->

@@ -1,15 +1,15 @@
 <%--
   Created by IntelliJ IDEA.
   User: jorge
-  Date: 09/02/2023
-  Time: 16:07
+  Date: 10/02/2023
+  Time: 09:27
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="utf-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="en">
+<html>
 <head>
-    <title>Vista carrito</title>
+    <title>Vista productos</title>
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet"
@@ -39,11 +39,11 @@
 </nav>
 <!-- Contenido -->
 <div class="container" id="main-container">
-    <h2>Vista Carrito</h2>
+    <h2>Productos disponibles</h2>
     <ul>
-        <c:forEach var="item" items="${selectedItems}">
+        <c:forEach var="item" items="${storeProducts}">
             <tr>
-                <li>${item.key} - ${item.value} </li>
+                <li>${item.name} </li>
             </tr>
         </c:forEach>
     </ul>
@@ -51,5 +51,3 @@
 </div>
 </body>
 </html>
-
-
